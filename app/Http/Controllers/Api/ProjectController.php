@@ -16,8 +16,13 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::select(['id', 'type_id', 'title', 'content', 'image'])
-        ->with(['type:id,label,color', 'technologies:id,label,color'])
-        ->paginate();
+        ->orderBy('id', 'DESC')
+        ->with(['type:id,label,color', 'technologies'])
+        ->paginate(4);
+
+        foreach ($projects as $project) {
+            $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : null;
+        }
         return response()->json($projects);
     }
 
@@ -29,8 +34,14 @@ class ProjectController extends Controller
     //  * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $project = Project::select(['id', 'type_id', 'title', 'content', 'image'])
+        ->where('id', $id)
+        ->with(['type:id,label,color', 'technologies:id,label,color'])
+         ->first();
+        $project->image = !empty($project->image) ? asset('/storage/' . $project->image) : null;
+        
+        return response()->json($project);
     }
 
     

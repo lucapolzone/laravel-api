@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Project;
+// use App\Models\Type;
 // use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -18,16 +19,23 @@ class ProjectSeeder extends Seeder
 	// public function run(Faker $faker)
 	public function run()
 	{
+
+		// $types = Type::all()->pluck('id');
+		
 		// for ($i = 0; $i < 10; $i++) {
 		$project = new Project;
+		// $project->type_id = $faker->randomElement($types);
 		$project->title = 'Vite Boolando';
+		// $project->slug = Str::slug($project->title, '-');
 		// $project->type->label = 'Frontend';
 		$project->content = 'Create un nuovo progetto utilizzando Vite e Vue 3 e definite i componenti necessari per strutturare il layout.';
 		$project->link = 'https://github.com/lucapolzone/vite-boolando';
 		$project->save();
 
 		$project = new Project;
+		// $project->type_id = $faker->randomElement($types);
 		$project->title = 'Vue Email List';
+		// $project->slug = Str::slug($project->title, '-');
 		// $project->type->label = 'Frontend';
 		$project->content = "Attraverso l'apposita API di Boolean generare 10 indirizzi email e stamparli in pagina all'interno di una lista.";
 		$project->link = 'https://github.com/lucapolzone/vue-email-list';

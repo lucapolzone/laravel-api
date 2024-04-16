@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
             // $table->foreignId('type_id')->constrained(); //forma contratta
             $table->string('title', 150);
+            // $table->string('slug', 50);
             $table->text('content');
             $table->string('link');
             $table->timestamps();
